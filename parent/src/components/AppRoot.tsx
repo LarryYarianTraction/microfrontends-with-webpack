@@ -21,19 +21,12 @@ export const AppRoot: FunctionComponent = (): ReactElement => {
   const [appInitialised, setAppInitialised] = useState<boolean>(false);
 
   function initaliseApp(): void {
-    if (sessionStore.token) {
-      setAppInitialised(true);
-      return;
+    if (!sessionStore.token && localStorage.getItem(LocalStorageSessionKeys.userSessionToken)) {
+      sessionStore.setToken(
+        localStorage.getItem(LocalStorageSessionKeys.userSessionToken) as string
+      );
     }
 
-    if (!localStorage.getItem(LocalStorageSessionKeys.userSessionToken)) {
-      setAppInitialised(true);
-      return;
-    }
-
-    sessionStore.setToken(
-      localStorage.getItem(LocalStorageSessionKeys.userSessionToken) as string
-    );
     setAppInitialised(true);
   }
 
