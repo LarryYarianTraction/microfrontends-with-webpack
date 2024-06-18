@@ -1,20 +1,18 @@
-import { FunctionComponent, ReactElement, useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { FunctionComponent, ReactElement, useEffect, useState } from "react"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import {
   LocalStorageSessionKeys,
   useSessionStore,
-} from "../stores/sessionStore";
+} from "../stores/sessionStore"
 
-import { Flex, Spinner, Text } from "@chakra-ui/react";
-import { NavBar } from "./NavBar";
-import { ProtectedRoute } from "./ProtectedRoute";
-import { NotFound } from "./NotFound";
+import { Flex, Spinner, Text } from "@chakra-ui/react"
+import { NavBar } from "./NavBar"
+import { NotFound } from "./NotFound"
+import { ProtectedRoute } from "./ProtectedRoute"
 
-import { Home } from "./Home";
-import { MicroFrontendOnePage } from "./MicroFrontendOnePage";
-import { MicroFrontendTwoPage } from "./MicroFrontendTwoPage";
-import { MicroFrontendThreePage } from "./MicroFrontendThreePage";
-import { Login } from "./Login";
+import { Home } from "./Home"
+import { Login } from "./Login"
+import { MicroFrontendTwoPage } from "./MicroFrontendTwoPage"
 
 export const AppRoot: FunctionComponent = (): ReactElement => {
   const sessionStore = useSessionStore();
