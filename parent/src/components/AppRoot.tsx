@@ -1,36 +1,34 @@
-import { FunctionComponent, ReactElement, useEffect, useState } from "react"
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { Flex, Spinner, Text } from '@chakra-ui/react'
+import { FunctionComponent, ReactElement, useEffect, useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import {
   LocalStorageSessionKeys,
   useSessionStore,
-} from "../stores/sessionStore"
-
-import { Flex, Spinner, Text } from "@chakra-ui/react"
-import { NavBar } from "./NavBar"
-import { NotFound } from "./NotFound"
-import { ProtectedRoute } from "./ProtectedRoute"
-
-import { Home } from "./Home"
-import { Login } from "./Login"
-import { MicroFrontendTwoPage } from "./MicroFrontendTwoPage"
+} from '../stores/sessionStore'
+import { Home } from './Home'
+import { Login } from './Login'
+import { MicroFrontendTwoPage } from './MicroFrontendTwoPage'
+import { NavBar } from './NavBar'
+import { NotFound } from './NotFound'
+import { ProtectedRoute } from './ProtectedRoute'
 
 export const AppRoot: FunctionComponent = (): ReactElement => {
-  const sessionStore = useSessionStore();
-  const [appInitialised, setAppInitialised] = useState<boolean>(false);
+  const sessionStore = useSessionStore()
+  const [appInitialised, setAppInitialised] = useState<boolean>(false)
 
   function initaliseApp(): void {
     if (!sessionStore.token && localStorage.getItem(LocalStorageSessionKeys.userSessionToken)) {
       sessionStore.setToken(
         localStorage.getItem(LocalStorageSessionKeys.userSessionToken) as string
-      );
+      )
     }
 
-    setAppInitialised(true);
+    setAppInitialised(true)
   }
 
   useEffect(() => {
-    initaliseApp();
-  }, []);
+    initaliseApp()
+  }, [])
 
   return (
     <BrowserRouter>
@@ -59,5 +57,5 @@ export const AppRoot: FunctionComponent = (): ReactElement => {
         </Flex>
       )}
     </BrowserRouter>
-  );
-};
+  )
+}

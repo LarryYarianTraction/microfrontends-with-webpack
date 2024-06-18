@@ -3,7 +3,7 @@ import {
 	Input,
 	Text
 } from '@chakra-ui/react'
-import { FunctionComponent, ReactElement, useEffect, useState } from 'react'
+import { FunctionComponent, ReactElement } from 'react'
 import { useSessionStore } from '../stores/sessionStore'
 
 export const Home: FunctionComponent = (): ReactElement => {
@@ -19,7 +19,7 @@ export const Home: FunctionComponent = (): ReactElement => {
 				placeholder="Search..."
 				value={searchText}
 				onChange={handleSearch}
-				width='50%'
+				width='30%'
 				backgroundColor='white'
 				my={4}
 			/>
