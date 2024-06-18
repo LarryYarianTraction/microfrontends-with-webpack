@@ -45,16 +45,8 @@ export const AppRoot: FunctionComponent = (): ReactElement => {
               <Route element={<ProtectedRoute />}>
                 <Route index element={<Home />} />
                 <Route
-                  path="microfrontend1/*"
-                  element={<MicroFrontendOnePage />}
-                />
-                <Route
                   path="microfrontend2/*"
                   element={<MicroFrontendTwoPage />}
-                />
-                <Route
-                  path="microfrontend3/*"
-                  element={<MicroFrontendThreePage />}
                 />
               </Route>
               <Route path="login" element={<Login />} />
