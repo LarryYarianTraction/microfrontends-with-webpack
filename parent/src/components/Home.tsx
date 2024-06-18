@@ -1,6 +1,7 @@
 import {
 	Box,
-	Input
+	Input,
+	Text
 } from '@chakra-ui/react'
 import { FunctionComponent, ReactElement, useState } from 'react'
 
@@ -17,9 +18,13 @@ export const Home: FunctionComponent = (): ReactElement => {
 				placeholder="Search..."
 				value={search}
 				onChange={handleSearchInputChange}
-				width="50%"
+				width='50%'
+				backgroundColor='white'
 				my={4}
 			/>
+			<Text mt={2}>
+				{search}
+			</Text>
 		</Box>
 	)
 }
