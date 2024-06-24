@@ -1,0 +1,11 @@
+<ng-container *ngIf="track">
+  <div class="card">
+    <img class="card-img" src="{{ track!.albumCover }}" alt="{{ track!.artist }} - {{ track!.name }}" />
+    <div class="card-content">
+      <h4>{{ track!.name }}</h4>
+      <p>{{ track!.artist }}</p>
+      <p>{{ track!.durationMs | duration }}</p>
+      <a href="{{ track!.link }}" target="_blank">Listen Now</a>
+    </div>
+  </div>
+</ng-container>

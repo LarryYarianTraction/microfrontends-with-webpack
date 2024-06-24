@@ -6,6 +6,19 @@ import {
 import { FunctionComponent, ReactElement } from 'react'
 import { useSessionStore } from '../stores/sessionStore'
 
+import 'spotify/song-seeker'
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'spotify-song-seeker': React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >;
+    }
+  }
+}
+
 export const Home: FunctionComponent = (): ReactElement => {
 	const { search: setSessionStoreSearch, searchText } = useSessionStore()
 
@@ -23,9 +36,7 @@ export const Home: FunctionComponent = (): ReactElement => {
 				backgroundColor='white'
 				my={4}
 			/>
-			<Text mt={2}>
-				{searchText}
-			</Text>
+			<spotify-song-seeker search-text={searchText}></spotify-song-seeker>
 		</Box>
 	)
 }
