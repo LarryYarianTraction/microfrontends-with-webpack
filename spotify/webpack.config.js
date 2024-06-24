@@ -9,10 +9,7 @@ sharedMappings.register(path.join(__dirname, 'tsconfig.json'), [
 ])
 
 module.exports = {
-  entry: {
-    app: './src/main.ts',
-    spotify: './src/web-component.ts'
-  },
+  entry: './src/main.ts',
   output: {
     uniqueName: 'spotify',
     publicPath: 'auto',
@@ -35,14 +32,11 @@ module.exports = {
       name: 'spotify',
       filename: 'remoteEntry.js',
       exposes: {
-        './web-component': './src/web-component'
+        './song-seeker': './src/main'
       },
       shared: share({
         '@angular/core': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
         '@angular/common': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-        '@angular/common/http': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-        '@angular/core/primitives/signals': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-        '@angular/core/primitives/event-dispatcher': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
         ...sharedMappings.getDescriptors()
       })
     }),

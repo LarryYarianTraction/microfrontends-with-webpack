@@ -1,5 +1,5 @@
-import { Component, effect, input } from '@angular/core'
-import { Subject, switchMap } from 'rxjs'
+import { Component, Input } from '@angular/core'
+import { BehaviorSubject, switchMap } from 'rxjs'
 import { SpotifyApiService } from '../spotify-api.service'
 import { TracklistComponent } from '../tracklist/tracklist.component'
 import { AsyncPipe } from '@angular/common'
@@ -12,19 +12,17 @@ import { AsyncPipe } from '@angular/common'
   styleUrl: './song-seeker.component.scss'
 })
 export class SongSeekerComponent {
-  searchText = input<string | null>(null)
-  private searchText$ = new Subject<string | null>()
+  private searchText$ = new BehaviorSubject<string | null>(null)
+  get searchText(): string | null {
+    return this.searchText$.getValue()
+  }
+  @Input() set searchText(value: string | null) {
+    this.searchText$.next(value)
+  }
 
   tracklist$ = this.searchText$.pipe(
     switchMap(searchText => this.spotifyApi.getTracks(searchText ?? undefined))
   )
 
-  constructor (private spotifyApi: SpotifyApiService) {
-    effect(() => {
-      const searchText = this.searchText()
-
-      console.log(`Searching Spotify for '${searchText ?? ''}'...`)
-      this.searchText$.next(searchText)
-    })
-  }
+  constructor (private spotifyApi: SpotifyApiService) { }
 }

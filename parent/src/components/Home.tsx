@@ -3,7 +3,7 @@ import {
 	Input,
 	Text
 } from '@chakra-ui/react'
-import { FunctionComponent, ReactElement } from 'react'
+import { FunctionComponent, ReactElement, useEffect } from 'react'
 import { useSessionStore } from '../stores/sessionStore'
 
 import 'spotify/song-seeker'
@@ -21,7 +21,6 @@ declare global {
 
 export const Home: FunctionComponent = (): ReactElement => {
 	const { search: setSessionStoreSearch, searchText } = useSessionStore()
-
 	const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSessionStoreSearch(event.target.value)
 	}

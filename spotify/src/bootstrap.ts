@@ -1,5 +1,11 @@
-import { bootstrapApplication } from '@angular/platform-browser'
-import { appConfig } from './app/app.config'
-import { AppComponent } from './app/app.component'
+import 'zone.js'
+import { createCustomElement } from '@angular/elements'
+import { createApplication } from '@angular/platform-browser'
+import { SongSeekerComponent } from './app/song-seeker/song-seeker.component'
 
-bootstrapApplication(AppComponent, appConfig).catch(err => console.error(err))
+createApplication({ providers: [] })
+  .then(app => {
+    const songSeekerElement = createCustomElement(SongSeekerComponent, { injector: app.injector })
+    customElements.define('spotify-song-seeker', songSeekerElement)
+  })
+  .catch(err => console.error(err))
