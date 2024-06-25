@@ -32,7 +32,7 @@ module.exports = {
       name: 'spotify',
       filename: 'remoteEntry.js',
       exposes: {
-        './song-seeker': './src/main'
+        './song-seeker': './src/mf-main'
       },
       shared: share({
         '@angular/core': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
