@@ -1,53 +1,45 @@
 # Webpack Micro-Frontend Demo
 
-A micro-frontend architecture demo in TypeScript using Webpack Module Federation.
+A set of webpack module federation/micro-frontend demos.
 
 Features in this PoC:
 
-- Lazy-loading of microfrontends
-- Each microfrontend has its own isolated development playground
-- Routing and sub-routing with React Router in the parent app and microfrontends
-- Each microfrontend has its own 404 page
-- Authentication and protected routes in parent app
-- Shared component library between parent app and microfrontends for UI consistency
+- modfed-demo: A small example of sharing code through webpack module federation
+- microfrontend-demo: A simple project showcasing microfrontends and the combination of app frameworks/libraries
 
-Features to add:
+## modfed-demo
 
-- Error Boundaries in parent app incase a microfrontend crashes
-- Support for multiple environments (dev, staging, prod)
-- Live demo
+This demonstration is a very simple example showing that webpack module federation can be used to access code hosted on a remote server with webpack, a feature which was not supported prior the introduction of module federation in webpack.
+
+To run the demos, open the `remote` and `host` folders in the `modfed-demo` demo in a terminal window.  For both applications, install the dependencies with `npm install` and then start them with `npm run serve`.  The locations of the applications will be displayed in the terminal window after starting them.
+
+## microfrontend-demo
+
+This demonstration includes a simple application which combines React and Angular together to produce an application that simulates searching through a series of song tracks.  This demonstrates:
+
+- how to setup module federation to support integrating multiple frameworks
+- One method to communicate between the two frameworks (web components)
 
 ### Running locally
 
 #### 1. Start the microfrontend apps
 
-This serves the microfrontends on ports `3081`, `3082` and `3083`.
+- Open a terminal to the `microfrontend-demo/spotify` folder.
+- Install dependencies (use Node 20), `npm i`.
+- Start the development server, `npx ng start`.
 
-This makes their isolated development playgrounds available at
+This serves the microfrontend on port `4200`.  This makes the isolated development playground available at `http://localhost:4200`.  This also makes the relevant code needed to operate as a microfrontend available at `http://localhost:4200/remoteEntry.js`.
 
-- `http://localhost:3081/`
-- `http://localhost:3082/`
-- `http://localhost:3083/`
-
-and their JS bundles (available for consumption by parent app) at
-
-- `http://localhost:3081/remoteEntry.js`
-- `http://localhost:3082/remoteEntry.js`
-- `http://localhost:3083/remoteEntry.js`
+There is a second microfrontend available in this demo, `microfrontend-demo/microfrontend2`.  This microfrontend demonstrates that more complex applications with routing requirements can be integrated into a microfrontend based solution.  Its isolated development playground is available at `http://localhost:3082`.
 
 ```sh
-# First microfrontend (very basic to-do app)
-cd microfrontend1
+# Angular microfrontend (simple song tracklist, inspired by Spotify)
+cd microfrontend-demo/spotify
 npm install
-npm start
+npx ng serve
 
 # Second microfrontend (shared routing example)
-cd microfrontend2
-npm install
-npm start
-
-# Third microfrontend (shared state example)
-cd microfrontend3
+cd microfrontend-demo/microfrontend2
 npm install
 npm start
 ```
@@ -59,7 +51,7 @@ This serves the parent app at `http://localhost:3080/`.
 The parent app is configured to lazy-load the microfrontends (asyncronously, over the network from `http://localhost:3081/remoteEntry.js`, etc) at run-time.
 
 ```sh
-cd parent
+cd microfrontend-demo/parent
 npm install
 npm start
 ```

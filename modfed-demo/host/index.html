@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .main {
+        width: fit-content;
+        margin: 0 auto;
+      }
+
+      textarea {
+        margin-bottom: 16px;
+      }
+
+      button {
+        margin-top: 16px;
+      }
+    </style>
+    <script src="./main.js" type="module"></script>
+  </head>
+  <body>
+    <div class="main">
+      <h1>Find Average</h1>
+      <textarea id="input" type="text" placeholder="1,2,3,4"></textarea>
+      <br />
+      Average:
+      <span id="result"></span> <br />
+      <button onclick="calculateAverage()">Calculate</button>
+    </div>
+  </body>
+</html>
